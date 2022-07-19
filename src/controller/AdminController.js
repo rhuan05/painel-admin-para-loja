@@ -27,7 +27,7 @@ exports.adicionarFileira = async (req, res)=>{
 
     try{
         await novaFileira.save();
-        res.redirect('http://localhost:3000/admin');
+        res.redirect('https://painel-admin-loja.herokuapp.com/admin');
     }catch(error){
         console.log(error);
     };
@@ -43,7 +43,7 @@ exports.deletarFileira = async (req, res)=>{
         for(let i=0; i<produtosDaFileira.length; i++){
             await ProdutoModel.findByIdAndDelete(produtosDaFileira[i]);
         }
-        res.redirect('http://localhost:3000/admin');
+        res.redirect('https://painel-admin-loja.herokuapp.com/admin');
     }catch(error){
         console.log(error);
     };
@@ -70,7 +70,7 @@ exports.criarProduto = async (req, res)=>{
 
     try{
         await novoProduto.save();
-        res.redirect('http://localhost:3000/admin');
+        res.redirect('https://painel-admin-loja.herokuapp.com/admin');
     }catch(error){
         console.log(error);
     }
@@ -81,7 +81,7 @@ exports.deletarProduto = async (req, res)=>{
 
     try{
         await ProdutoModel.findByIdAndDelete(id);
-        res.redirect('http://localhost:3000/admin');
+        res.redirect('https://painel-admin-loja.herokuapp.com/admin');
     }catch(error){
         console.log(error);
     };
