@@ -51,3 +51,17 @@ cancelarExcluir.forEach((e)=>{
         forDisplayNone.style.display = 'none';
     });
 });
+
+// Editar produto
+
+let tdIconEdit = document.querySelector('.tdIconEdit');
+
+tdIconEdit.addEventListener('click', ()=>{
+    document.querySelector('body').classList.toggle('mostrarModelEditarProduto');
+});
+
+let fecharEditarProduto = document.querySelector('.fecharEditarProduto');
+
+fecharEditarProduto.addEventListener('click', ()=>{
+    document.querySelector('body').classList = '';
+});

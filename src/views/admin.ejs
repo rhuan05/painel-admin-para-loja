@@ -31,8 +31,21 @@
             <button>Criar produto</button>
         </form>
     </div>
+    <div class="model-editarProduto">
+        <div class="fecharEditarProduto x">X</div>
+        <form action="admin-editar-produto" method="post">
+            <h3>Editar produto</h3>
+            <div class="paraEditar"></div>
+            <input type="text" name="nomeEditado" placeholder="Novo nome" />
+            <div class="paraEditar"></div>
+            <input type="text" name="precoEditado" placeholder="Novo preço" />
+            <button>Editar</button>
+        </form>
+    </div>
 
-    <div class="erro"><%= error %></div>
+    <% if(error.length !== 0) {%>
+        <div class="erro"><%= error %></div>
+    <% } %>
 
     <div class="container">
         <section class="container--fileira">
@@ -63,25 +76,29 @@
 
         <section class="sectionProdutos">
             <h2>Seus produtos</h2>
-            <table>
-                <thead>
-                    <th>Nome</th>
-                    <th>Preço</th>
-                    <th>Fileira</th>
-                </thead>
-                <% for(let i=0; i < produtos.length; i++) { %>
-                    <tr>
-                        <td><%= produtos[i].nome %></td>
-                        <td><%= produtos[i].preco %></td>
-                        <td><%= produtos[i].fileira %></td>
-                        <form action="admin-deletar-produto" method="post">
-                            <input type="hidden" name="id" value="<%= produtos[i]._id %>">
-                            <td class="x"><button>X</button></td>
-                        </form>
-                            
-                    </tr>
-                <% } %>
-            </table>
+            <div class="overflow">
+                <table>
+                    <thead>
+                        <th>Nome</th>
+                        <th>Preço</th>
+                        <th>Fileira</th>
+                    </thead>
+                    <tbody>
+                        <% for(let i=0; i < produtos.length; i++) { %>
+                            <tr>
+                                <td><%= produtos[i].nome %></td>
+                                <td><%= produtos[i].preco %></td>
+                                <td><%= produtos[i].fileira %></td>
+                                <td class="tdIconEdit"><img src="/admin/images/iconeditar.png" alt="Editar icone" /></td>
+                                <form action="admin-deletar-produto" method="post">
+                                    <input type="hidden" name="id" value="<%= produtos[i]._id %>">
+                                    <td class="x"><button>X</button></td>
+                                </form>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
             <button class="btn btnNovoProduto">Novo produto</button>
         </section>
     </div>
