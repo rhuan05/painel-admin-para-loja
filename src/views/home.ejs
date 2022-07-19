@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar nomes</title>
-    <link rel="stylesheet" href="search.css">
+    <title>Estudos</title>
 </head>
 <body>
-    <h1>Adicionar nomes</h1>
-    <form id="formAdicionarNome" method="post">
-        <input type="text" name="name" id="inputAdicionarNome" placeholder="Seu nome...">
-        <button class="blue">Enviar</button>
-    </form>
-    <button id="verNomesLink" class="blue"><a href="http://localhost:3000/nomes">Ver nomes</a></button>
+    <div class="fileiras">
+        <% for(let contador=0; contador < fileiras.length; contador++) {%>
+            <h2><%= fileiras[contador].titulo %></h2>
+            <% for(let i=0; i < fileiraProdutos.length; i++) { %>
+                <% if(fileiraProdutos[i].fileira === fileiras[contador].titulo) { %>
+                    <h3><%= fileiraProdutos[i].nome %></h3>
+                    <p>R$<%= fileiraProdutos[i].preco %></p>
+                <% } %>
+            <% } %>
+        <% } %>
+    </div>
 </body>
 </html>
