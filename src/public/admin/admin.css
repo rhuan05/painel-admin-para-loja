@@ -46,6 +46,7 @@ input{
     border-radius: 5px;
     border: 2px solid black;
     padding-bottom: 30px;
+    z-index: 1;
 }
 .model-novaFileira .fecharModeloFileira{
     text-align: center;
@@ -88,6 +89,7 @@ h3{
     border-radius: 5px;
     border: 2px solid black;
     padding-bottom: 30px;
+    z-index: 1;
 }
 .model-novoProduto form{
     width: 90%;
@@ -203,9 +205,6 @@ td button{
     border: 2px solid black;
     padding-bottom: 30px;
 }
-body.ativarConfirmacaoParaDeletar .confirmacaoParaExcluir{
-    display: block;
-}
 .confirmacaoParaExcluir .deletarFileira{
     width: 90%;
     margin-top: 10px;
@@ -225,6 +224,12 @@ body.ativarConfirmacaoParaDeletar .confirmacaoParaExcluir{
 }
 .container--fileira-overflow{
     overflow: auto;
+}
+.btnMostrarAlerta{
+    display: block;
+    position: absolute;
+    font-weight: bold;
+    margin-left: -20px;
 }
 @media(max-width: 768px){
     .container{

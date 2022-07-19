@@ -43,14 +43,16 @@
                         <div class="fileira--elemento">
                             <div class="tituloFileira">
                                 <%= fileiras[i].titulo %>
-                                <form class="confirmacaoParaExcluir" action="admin-fileira-delete" method="post">
-                                    <input type="hidden" name="id" value="<%= fileiras[i].titulo %>" />
-                                    <input type="hidden" name="id" value="<%= fileiras[i]._id %>" />
-                                    <div class="cancelarExcluir x">X</div>
-                                    <p>Excluindo essa fileira você estará excluindo também todos os produtos que estão nela.</p>
-                                    <button class="deletarFileira x">Quero excluir mesmo assim!</button>
+                                <form action="admin-fileira-delete" method="post">
+                                    <div class="deletarFileira x btnMostrarAlerta">X</div>
+                                    <div class="confirmacaoParaExcluir">
+                                        <input type="hidden" name="id" value="<%= fileiras[i]._id %>" />
+                                        <input type="hidden" name="titulo" value="<%= fileiras[i].titulo %>" />
+                                        <div class="cancelarExcluir x">X</div>
+                                        <p>Excluindo essa fileira você estará excluindo também todos os produtos que estão nela.</p>
+                                        <button class="deletarFileira x">Quero excluir mesmo assim!</button>
+                                    </div>
                                 </form>
-                                <button class="deletarFileira x btnMostrarAlerta">X</button>
                             </div>
                         </div>
                     <% } %>

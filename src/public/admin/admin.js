@@ -34,11 +34,12 @@ fecharModeloProduto.addEventListener('click', ()=>{
 // Excluir fileira
 
 let btnMostrarAlerta = document.querySelectorAll('.btnMostrarAlerta');
-console.log(btnMostrarAlerta);
 
 btnMostrarAlerta.forEach((e)=>{
     e.addEventListener('click', ()=>{
-        document.querySelector('body').classList.toggle('ativarConfirmacaoParaDeletar');
+        let form = e.parentNode;
+        let formChilds = form.childNodes[3];
+        formChilds.style.display = 'block';
     });
 });
 
@@ -46,6 +47,7 @@ let cancelarExcluir = document.querySelectorAll('.cancelarExcluir');
 
 cancelarExcluir.forEach((e)=>{
     e.addEventListener('click', ()=>{
-        document.querySelector('body').classList = '';
+        let forDisplayNone = e.parentNode;
+        forDisplayNone.style.display = 'none';
     });
 });

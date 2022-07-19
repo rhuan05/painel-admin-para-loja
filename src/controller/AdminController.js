@@ -27,23 +27,23 @@ exports.adicionarFileira = async (req, res)=>{
 
     try{
         await novaFileira.save();
-        res.redirect('https://painel-admin-loja.herokuapp.com/admin');
+        res.redirect('http://localhost:3000/admin');
     }catch(error){
         console.log(error);
     };
 };
 
 exports.deletarFileira = async (req, res)=>{
-    const fileiraDeletada = req.body.id;
-    const produtosDaFileira = await ProdutoModel.find({fileira: `${fileiraDeletada[0]}`});
+    const { id, titulo } = req.body;
+    const produtosDaFileira = await ProdutoModel.find({fileira: `${titulo}`});
 
     try{
-        await FileiraModel.findByIdAndDelete(fileiraDeletada[1]);
+        await FileiraModel.findByIdAndDelete(id);
 
         for(let i=0; i<produtosDaFileira.length; i++){
             await ProdutoModel.findByIdAndDelete(produtosDaFileira[i]);
         }
-        res.redirect('https://painel-admin-loja.herokuapp.com/admin');
+        res.redirect('http://localhost:3000/admin');
     }catch(error){
         console.log(error);
     };
@@ -70,7 +70,7 @@ exports.criarProduto = async (req, res)=>{
 
     try{
         await novoProduto.save();
-        res.redirect('https://painel-admin-loja.herokuapp.com/admin');
+        res.redirect('http://localhost:3000/admin');
     }catch(error){
         console.log(error);
     }
@@ -81,7 +81,7 @@ exports.deletarProduto = async (req, res)=>{
 
     try{
         await ProdutoModel.findByIdAndDelete(id);
-        res.redirect('https://painel-admin-loja.herokuapp.com/admin');
+        res.redirect('http://localhost:3000/admin');
     }catch(error){
         console.log(error);
     };
