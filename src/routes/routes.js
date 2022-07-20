@@ -10,5 +10,6 @@ router.post('/admin-nova-fileira', AdminController.adicionarFileira);
 router.post('/admin-fileira-delete', AdminController.deletarFileira);
 router.post('/admin-criar-produto', AdminController.criarProduto);
 router.post('/admin-deletar-produto', AdminController.deletarProduto);
+router.post('/admin-editar-produto', AdminController.editarProduto);
 
 module.exports = router;

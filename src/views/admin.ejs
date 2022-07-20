@@ -31,18 +31,6 @@
             <button>Criar produto</button>
         </form>
     </div>
-    <div class="model-editarProduto">
-        <div class="fecharEditarProduto x">X</div>
-        <form action="admin-editar-produto" method="post">
-            <h3>Editar produto</h3>
-            <div class="paraEditar"></div>
-            <input type="text" name="nomeEditado" placeholder="Novo nome" />
-            <div class="paraEditar"></div>
-            <input type="text" name="precoEditado" placeholder="Novo preço" />
-            <button>Editar</button>
-        </form>
-    </div>
-
     <% if(error.length !== 0) {%>
         <div class="erro"><%= error %></div>
     <% } %>
@@ -77,6 +65,23 @@
         <section class="sectionProdutos">
             <h2>Seus produtos</h2>
             <div class="overflow">
+                <form class="model-editarProduto" action="admin-editar-produto" method="post">
+                    <div class="fecharEditarProduto x">X</div>
+                    <h3>Editar produto</h3>
+                    <div class="paraEditar"></div>
+                    <input type="hidden" name="idProduto" id="idProdutoInput">
+                    <input type="text" name="novoNome" placeholder="Novo nome" />
+                    <div class="paraEditar"></div>
+                    <input type="text" name="novoPreco" placeholder="Novo preço" />
+                    <div class="paraEditar"></div>
+                    <select name="novaFileira">
+                        <option>Clique para mudar fileira</option>
+                        <% for(let i=0; i < fileiras.length; i++) { %>
+                            <option value="<%= fileiras[i].titulo %>"><%= fileiras[i].titulo %></option>    
+                        <% } %>
+                    </select>
+                    <button>Editar</button>
+                </form>
                 <table>
                     <thead>
                         <th>Nome</th>
@@ -89,7 +94,10 @@
                                 <td><%= produtos[i].nome %></td>
                                 <td><%= produtos[i].preco %></td>
                                 <td><%= produtos[i].fileira %></td>
-                                <td class="tdIconEdit"><img src="/admin/images/iconeditar.png" alt="Editar icone" /></td>
+                                <td class="idNone"><%= produtos[i]._id %></td>
+                                <td class="tdIconEdit">
+                                    <img src="/admin/images/iconeditar.png" alt="Editar icone" />
+                                </td>
                                 <form action="admin-deletar-produto" method="post">
                                     <input type="hidden" name="id" value="<%= produtos[i]._id %>">
                                     <td class="x"><button>X</button></td>

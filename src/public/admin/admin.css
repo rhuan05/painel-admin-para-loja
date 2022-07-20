@@ -129,16 +129,15 @@ h3{
     background: rgb(214, 214, 214);
     padding: 10px;
     position: absolute;
-    top: 45%;
+    top: 50%;
     left: 50%;
-    margin: -100px 0 0 -160px;
     border-radius: 5px;
     border: 2px solid black;
     padding-bottom: 30px;
     z-index: 1;
-}
-body.mostrarModelEditarProduto .model-editarProduto{
-    display: block;
+    margin: -150px 0 0 -150px;
+    flex-direction: column;
+    gap: 3px;
 }
 .model-editarProduto input{
     width: 99%;
@@ -146,13 +145,6 @@ body.mostrarModelEditarProduto .model-editarProduto{
     padding: 3px 5px;
     font-size: 16px;
     border-radius: 5px;
-}
-.model-editarProduto form{
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    gap: 3px;
 }
 .model-editarProduto button{
     margin-top: 10px;
@@ -308,6 +300,9 @@ tbody img{
     font-weight: bold;
     margin-left: -20px;
 }
+.idNone{
+    display: none;
+}
 @media(max-width: 768px){
     .container{
         width: 90%;
@@ -393,14 +388,24 @@ tbody img{
         border: none;
         padding-bottom: 0px;
     }
+    .model-editarProduto input{
+        width: 90%;
+        margin: 0 auto;
+    }
+    .model-editarProduto button{
+        width: 92%;
+        margin: 0 auto;
+        margin-top: 10px;
+        padding: 3px 0px;
+    }
     .fecharEditarProduto{
         top: 20px;
-    font-size: 22px;
-    padding: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
+        font-size: 22px;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
     }
 }
 @media(max-width: 375px){
