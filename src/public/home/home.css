@@ -5,8 +5,42 @@ body{
     font-family: 'Poppins', sans-serif;
     margin: 0;
 }
+header{
+    background: rgb(48, 138, 255);
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.busca{
+    display: flex;
+    width: 300px;
+}
+.busca input{
+    width: 100%;
+    font-size: 16px;
+    padding: 3px 5px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+.busca button{
+    width: 30px;
+    margin-left: -25px;
+    background: rgb(255, 69, 69);
+    border: none;
+    cursor: pointer;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.busca i{
+    color: white;
+    width: 100%;
+}
 .produto--flex{
     display: flex;
+    width: 100vw;
+    justify-content: center;
 }
 .container--produto{
     box-shadow: 0px 0px 10px 2px rgb(184, 184, 184);
@@ -22,8 +56,14 @@ body{
     width: 90%;
 }
 h2{
-    margin: 10px;
+    text-align: center;
 }
 h3, p{
     text-align: center;
+}
+.zeroProdutosEncontrados{
+    text-align: center;
+}
+.search{
+    margin-top: 30px;
 }

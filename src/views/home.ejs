@@ -7,8 +7,15 @@
     <title>Estudos</title>
     <link rel="stylesheet" href="home/home.css">
     <link rel="shortcut icon" href="favicon-r.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/e0a5611951.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <header>
+        <form method="post" class="busca">
+            <input type="text" name="procurarProduto" placeholder="Nome do produto" />
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </header>
     <div class="fileiras">
         <% for(let contador=0; contador < fileiras.length; contador++) {%>
             <h2><%= fileiras[contador].titulo %></h2>

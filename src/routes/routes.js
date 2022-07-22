@@ -16,6 +16,7 @@ const storage = multer.diskStorage({
 
 // Rotas
 router.get('/', HomeController.paginaInicialHome);
+router.post('/', HomeController.procurarProduto);
 
 router.get('/admin', AdminController.paginaInicialAdmin);
 router.post('/admin-nova-fileira', AdminController.adicionarFileira);

@@ -7,6 +7,7 @@
     <title>Estudos</title>
     <link rel="stylesheet" href="admin/admin.css">
     <link rel="shortcut icon" href="favicon-r.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/e0a5611951.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="model-novaFileira">
@@ -23,7 +24,7 @@
             <h3>Adicionar produto</h3>
             <input type="text" name="name" class="nomeProdutoInput" placeholder="Nome" />
             <input type="text" name="preco" class="precoProdutoInput" placeholder="Preço" />
-            <input type="file" name="imgProduto" placeholder="Imagem do produto" />
+            <input type="file" name="imgProduto" id="imgProduto" placeholder="Imagem do produto" />
             <select name="select">
                 <option value="valorNuloSelect">Clique e selecione a fileira</option>
                 <% for(let i=0; i < fileiras.length; i++) { %>
@@ -97,7 +98,7 @@
                                 <td><%= produtos[i].fileira %></td>
                                 <td class="idNone"><%= produtos[i]._id %></td>
                                 <td class="tdIconEdit">
-                                    <img src="/admin/images/iconeditar.png" alt="Editar icone" />
+                                    <i class="fa-solid fa-pen-to-square"></i>
                                 </td>
                                 <form action="admin-deletar-produto" method="post">
                                     <input type="hidden" name="id" value="<%= produtos[i]._id %>">
