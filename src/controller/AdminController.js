@@ -1,3 +1,4 @@
+require('dotenv').config();
 const FileiraModel = require('../models/Fileira');
 const ProdutoModel = require('../models/Produtos');
 
@@ -52,7 +53,7 @@ exports.deletarFileira = async (req, res)=>{
 exports.criarProduto = async (req, res)=>{
     const fileiras = await FileiraModel.find();
     const produtos = await ProdutoModel.find();
-    const { name, preco, select } = req.body;
+    const { name, preco, select, imgProduto } = req.body;
 
     if(!name || !preco){
         return res.render('admin', {error: 'Para criar um produto é preciso preencher todos os campos.', fileiras, produtos});
@@ -60,15 +61,30 @@ exports.criarProduto = async (req, res)=>{
 
     if(select === 'valorNuloSelect'){
         return res.render('admin', {error: 'É preciso selecionar uma fileira para criar um produto.', fileiras, produtos});
-    }
+    };
 
-    const novoProduto = new ProdutoModel({
-        nome: name,
-        preco: preco,
-        fileira: select,
+    if(!imgProduto){
+        return res.render('admin', {error:'Para criar um produto é preciso inserir uma imagem nele.', fileiras, produtos});
+    };
+
+    // Cloudinary
+    const cloudinary = require('cloudinary').v2;
+        cloudinary.config({
+        cloud_name: process.env.CLOUDNAME,
+        api_key: process.env.API_KEY,
+        api_secret: process.env.API_SECRET,
     });
 
     try{
+        const resCloudinary = await cloudinary.uploader.upload(req.file.path);
+
+        const novoProduto = new ProdutoModel({
+            nome: name,
+            preco: preco,
+            fileira: select,
+            img: resCloudinary.url,
+        });
+
         await novoProduto.save();
         res.redirect('https://painel-admin-loja.herokuapp.com/admin');
     }catch(error){

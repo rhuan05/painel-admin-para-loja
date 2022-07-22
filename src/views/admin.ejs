@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Estudos</title>
     <link rel="stylesheet" href="admin/admin.css">
+    <link rel="shortcut icon" href="favicon-r.png" type="image/x-icon">
 </head>
 <body>
     <div class="model-novaFileira">
@@ -18,10 +19,11 @@
     </div>
     <div class="model-novoProduto">
         <div class="fecharModeloProduto x">X</div>
-        <form action="admin-criar-produto" method="post">
+        <form action="admin-criar-produto" method="post" enctype="multipart/form-data">
             <h3>Adicionar produto</h3>
             <input type="text" name="name" class="nomeProdutoInput" placeholder="Nome" />
             <input type="text" name="preco" class="precoProdutoInput" placeholder="Preço" />
+            <input type="file" name="imgProduto" placeholder="Imagem do produto" />
             <select name="select">
                 <option value="valorNuloSelect">Clique e selecione a fileira</option>
                 <% for(let i=0; i < fileiras.length; i++) { %>
@@ -34,7 +36,6 @@
     <% if(error.length !== 0) {%>
         <div class="erro"><%= error %></div>
     <% } %>
-
     <div class="container">
         <section class="container--fileira">
             <h2>Suas fileiras</h2>
