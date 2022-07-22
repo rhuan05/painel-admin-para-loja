@@ -2,6 +2,8 @@ require('dotenv').config();
 const FileiraModel = require('../models/Fileira');
 const ProdutoModel = require('../models/Produtos');
 
+const cloudinary = require('cloudinary').v2;
+
 exports.paginaInicialAdmin = async (req, res)=>{
     const fileiras = await FileiraModel.find();
     const produtos = await ProdutoModel.find();
@@ -28,7 +30,7 @@ exports.adicionarFileira = async (req, res)=>{
 
     try{
         await novaFileira.save();
-        res.redirect('https://painel-admin-loja.herokuapp.com/admin');
+        res.redirect('http://localhost:3000/admin');
     }catch(error){
         console.log(error);
     };
@@ -44,7 +46,7 @@ exports.deletarFileira = async (req, res)=>{
         for(let i=0; i<produtosDaFileira.length; i++){
             await ProdutoModel.findByIdAndDelete(produtosDaFileira[i]);
         }
-        res.redirect('https://painel-admin-loja.herokuapp.com/admin');
+        res.redirect('http://localhost:3000/admin');
     }catch(error){
         console.log(error);
     };
@@ -53,24 +55,26 @@ exports.deletarFileira = async (req, res)=>{
 exports.criarProduto = async (req, res)=>{
     const fileiras = await FileiraModel.find();
     const produtos = await ProdutoModel.find();
-    const { name, preco, select, imgProduto } = req.body;
+    const { name, preco, select } = req.body;
+    const imgProduto = req.file;
 
     if(!name || !preco){
         return res.render('admin', {error: 'Para criar um produto é preciso preencher todos os campos.', fileiras, produtos});
     };
 
+    if(!imgProduto){
+        return res.render('admin', {error:'Para criar um produto é preciso inserir uma imagem nele.', fileiras, produtos});
+    };
+    
     if(select === 'valorNuloSelect'){
         return res.render('admin', {error: 'É preciso selecionar uma fileira para criar um produto.', fileiras, produtos});
     };
 
-    if(!imgProduto){
-        return res.render('admin', {error:'Para criar um produto é preciso inserir uma imagem nele.', fileiras, produtos});
-    };
 
     // Cloudinary
     const cloudinary = require('cloudinary').v2;
         cloudinary.config({
-        cloud_name: process.env.CLOUDNAME,
+        cloud_name: process.env.CLOUD_NAME,
         api_key: process.env.API_KEY,
         api_secret: process.env.API_SECRET,
     });
@@ -86,7 +90,7 @@ exports.criarProduto = async (req, res)=>{
         });
 
         await novoProduto.save();
-        res.redirect('https://painel-admin-loja.herokuapp.com/admin');
+        res.redirect('http://localhost:3000/admin');
     }catch(error){
         console.log(error);
     }
@@ -97,7 +101,7 @@ exports.deletarProduto = async (req, res)=>{
 
     try{
         await ProdutoModel.findByIdAndDelete(id);
-        res.redirect('https://painel-admin-loja.herokuapp.com/admin');
+        res.redirect('http://localhost:3000/admin');
     }catch(error){
         console.log(error);
     };
@@ -116,7 +120,7 @@ exports.editarProduto = async (req, res)=>{
         if(novaFileira !== '' && novaFileira !== 'Clique para mudar fileira'){
             await ProdutoModel.findByIdAndUpdate(idProduto, {fileira: novaFileira});
         };
-        res.redirect('https://painel-admin-loja.herokuapp.com/admin');
+        res.redirect('http://localhost:3000/admin');
     }catch(error){
         console.log(error);
     };
